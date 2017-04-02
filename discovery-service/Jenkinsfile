@@ -3,7 +3,7 @@ node {
     withMaven(maven:'maven') {
 
         stage('Checkout') {
-            git url: 'https://github.com/piomin/sample-spring-microservices.git', credentialsId: 'github-piomin', branch: 'master'
+            git url: 'https://github.com/YuryYaroshevich/sample-spring-microservices.git', credentialsId: '00b4371a-97e5-4242-b840-c6f6a5b05d48', branch: 'master'
         }
 
         stage('Build') {
@@ -25,9 +25,9 @@ node {
             docker.image("localhost:5000/discovery-service:${env.version}").run('-p 8761:8761 -h discovery --name discovery')
         }
 
-        stage ('Final') {
+        /*stage ('Final') {
             build job: 'account-service-pipeline', wait: false
-        }      
+        }*/
 
     }
 
