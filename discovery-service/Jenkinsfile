@@ -16,13 +16,13 @@ node {
 
         stage('Image') {
             dir ('discovery-service') {
-                def app = docker.build "192.168.99.100:5000/discovery-service:${env.version}"
+                def app = docker.build "192.168.99.101:5000/discovery-service:${env.version}"
                 app.push()
             }
         }
 
         stage ('Run') {
-            docker.image("192.168.99.100:5000/discovery-service:${env.version}").run('-p 8761:8761 -h discovery --name discovery')
+            docker.image("192.168.99.101:5000/discovery-service:${env.version}").run('-p 8761:8761 -h discovery --name discovery')
         }
 
         /*stage ('Final') {
